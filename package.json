@@ -25,7 +25,7 @@
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
     "build:dll": "node ./internals/scripts/dependencies.js",
-    "start": "cross-env NODE_ENV=development node server",
+    "start": "concurrently \"cross-env NODE_ENV=development node server\" \"cosmos\"",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
@@ -45,7 +45,9 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:dev": "cross-env NODE_ENV=test jest --watch",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cosmos": "cosmos",
+    "cosmos:export": "cosmos-export"
   },
   "moduleRoots": "app",
   "lint-staged": {
@@ -294,6 +296,7 @@
     "babel-preset-react": "~6.24.1",
     "babel-preset-stage-0": "~6.24.1",
     "circular-dependency-plugin": "~3.0.0",
+    "concurrently": "~3.5.1",
     "coveralls": "~2.13.1",
     "css-loader": "~0.28.11",
     "enzyme": "~3.3.0",
@@ -324,6 +327,7 @@
     "offline-plugin": "~4.9.0",
     "plop": "~1.8.0",
     "raf": "~3.4.0",
+    "react-cosmos": "~4.0.0-beta.1",
     "react-test-renderer": "~16.2.0",
     "rimraf": "~2.6.2",
     "shelljs": "~0.7.7",
