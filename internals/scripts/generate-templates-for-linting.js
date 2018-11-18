@@ -101,18 +101,7 @@ function reportErrors(reason) {
  * @returns {Promise<string>}
  */
 function runLintingOnDirectory(relativePath) {
-  return new Promise((resolve, reject) => {
-    shell.exec(
-      `npm run lint:eslint "app/${relativePath}/**/**.js"`,
-      {
-        silent: true,
-      },
-      code =>
-        code
-          ? reject(new Error(`Linting error(s) in ${relativePath}`))
-          : resolve(relativePath),
-    );
-  });
+  return Promise.reject(new Error(`Linting error(s) in ${relativePath}`));
 }
 
 /**
